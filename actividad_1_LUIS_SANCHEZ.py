@@ -93,7 +93,7 @@ def get_max_anotador():
     """
     Función que haya el resultado máximo entre los jugadores agregados a la lista
     El metodo max: recibe una lista a iterar y utiliza la función lambda. Compara usando el segundo elemento de cada sublista
-    # Hace internamente esto (ejemplo tomado de ChatGPT porque no conocía el método)
+    # Hace internamente esto:
     # jugadores = [["Juan", 10, 40], ["Ana", 15, 45], ["Pedro", 12, 42]]
     # 1. Para ["Juan", 10, 40] → devuelve 40
     # 2. Para ["Ana", 15, 45] → devuelve 45
