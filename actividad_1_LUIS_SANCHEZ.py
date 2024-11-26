@@ -1,4 +1,9 @@
 """
+---
+title: 04GIAR Fundamentos de la programación.
+subtitle: ACTIVIDAD 1: INTRODUCCIÓN A PYTHON
+author: 2024@Luis, Sánchez.
+
 Definición del jugador
 - Función Introducir un nuevo jugador
 -- debe validar que el dorsal no está repetido
@@ -25,6 +30,7 @@ players = []
 
 
 def is_number(number):
+    # predicado para verificar que el valor es númerico
     return number.isdigit()
 
 
