@@ -58,6 +58,7 @@ def is_string(text):
 def is_number(number):
     return number.isdigit()
 
+
 def is_empty(value):
     return value == ''
 
@@ -80,17 +81,20 @@ def get_player(dorsal):
 
 
 def create_nuevo_jugador(nombre, dorsal, canastas_1, canastas_2, canastas_3):
-    result = ""
     if is_player_duplicated(dorsal):
-        result = "El jugador ya ha sido ingresado en la lista, intenta de nuevo."
-    else:
-        players.append([nombre, dorsal, canastas_1, canastas_2, canastas_3])
-        result = "Jugador ha sido agregado en la lista correctamente"
-    return result
+        return False
+
+    players.append([nombre, dorsal, canastas_1, canastas_2, canastas_3])
+    return True
 
 
 def get_lista_jugadores():
-    return players
+    result = ""
+    if len(players) == 0:
+        result = "\nNo hay jugadores, crea un jugador con la opción[1]\n"
+    for index, player in enumerate(players):
+        result = f'\nJugador {index + 1}: Nombre {player[0]}, dorsal {player[1]}, canastas {player[2]}, canastas {player[3]}.\n'
+    return print(result)
 
 
 def get_maximo_anotador():
@@ -104,7 +108,7 @@ def get_estadisticas_equipo():
 
 
 def salir_programa():
-    result = ""
+    result = print("\nAdios, Gracias!!\n")
     return result
 
 
@@ -113,6 +117,7 @@ def get_player_numeric_input(player_attribute):
     while not is_number(user_input):
         user_input = input(f"El {player_attribute} debe ser un numero: ")
     return user_input
+
 
 def initialize_game():
     print("Hola, selecciona una opción usando el teclado:"
@@ -127,35 +132,37 @@ def initialize_game():
     if user_selection == "1":
 
         player_name = input("Escribe el nombre del jugador: ")
-
         player_number = get_player_numeric_input("dorsal")
-
         player_score_1 = get_player_numeric_input("canastas 1")
-
         player_score_2 = get_player_numeric_input("canastas 2")
-
         player_score_3 = get_player_numeric_input("canastas 3")
 
-        create_nuevo_jugador(
+        new_player = create_nuevo_jugador(
             player_name,
             int(player_number),
             int(player_score_1),
             int(player_score_2),
             int(player_score_3)
         )
-        print(get_lista_jugadores())
+        if new_player:
+            print(f"Jugador creado exitosamente {players[-1]}\n")
+            initialize_game()
 
     elif user_selection == "2":
+        print("Lista de Jugadores")
         get_lista_jugadores()
+        initialize_game()
 
     elif user_selection == "3":
         get_maximo_anotador()
+        initialize_game()
 
     elif user_selection == "4":
         get_estadisticas_equipo()
+        initialize_game()
 
     elif user_selection == "0":
-        print("Gracias!!\n")
+        salir_programa()
     else:
         print("Seleccionaste una opción que no existe. Intenta de nuevo\n")
         initialize_game()
