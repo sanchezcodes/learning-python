@@ -2,7 +2,7 @@
 ---
 title: 04GIAR Fundamentos de la programación.
 subtitle: ACTIVIDAD 1: INTRODUCCIÓN A PYTHON
-author: 2024@Luis, Sánchez.
+author: 2024@ Luis Alberto Sánchez Guzmán
 
 Definición del jugador
 - Función Introducir un nuevo jugador
@@ -26,6 +26,7 @@ Definición del jugador
 - Función Salir del Programa
 """
 
+# Inicialización de la lista global a manipular
 players = []
 
 
