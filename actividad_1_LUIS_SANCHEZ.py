@@ -38,10 +38,9 @@ Definición del jugador
 players = []
 
 
-# Utilities
-
 def is_player_duplicated(dorsal):
     """
+    Función que verifica si un jugador ya fue ingresado con ese mismo dorsal
     :param dorsal: int number of the player
     :return: True if player exist or False if not exist
     """
@@ -51,8 +50,21 @@ def is_player_duplicated(dorsal):
     return result
 
 
+def is_string(text):
+    text = str(text)
+    return isinstance(text, str)
+
+
+def is_number(number):
+    return number.isdigit()
+
+def is_empty(value):
+    return value == ''
+
+
 def sum_all_scores(canastas_1, canastas_2, canastas_3):
     """
+    Función que suma todos los puntajes y devuelve un total
     :param canastas_1: int
     :param canastas_2: int
     :param canastas_3: int
@@ -77,12 +89,8 @@ def create_nuevo_jugador(nombre, dorsal, canastas_1, canastas_2, canastas_3):
     return result
 
 
-print(create_nuevo_jugador("luis", 3, 2, 1, 0))
-
-
 def get_lista_jugadores():
-    result = []
-    return result
+    return players
 
 
 def get_maximo_anotador():
@@ -98,3 +106,60 @@ def get_estadisticas_equipo():
 def salir_programa():
     result = ""
     return result
+
+
+def get_player_numeric_input(player_attribute):
+    user_input = input(f"Escribe el {player_attribute} del jugador: ")
+    while not is_number(user_input):
+        user_input = input(f"El {player_attribute} debe ser un numero: ")
+    return user_input
+
+def initialize_game():
+    print("Hola, selecciona una opción usando el teclado:"
+          "\n[1] Introducir un nuevo jugador",
+          "\n[2] Listar jugadores",
+          "\n[3] Máximo anotador",
+          "\n[4] Estadísticas del equipo",
+          "\n[0] Salir del programa")
+
+    user_selection = input("Escribe un número de 0 a 4: ")
+
+    if user_selection == "1":
+
+        player_name = input("Escribe el nombre del jugador: ")
+
+        player_number = get_player_numeric_input("dorsal")
+
+        player_score_1 = get_player_numeric_input("canastas 1")
+
+        player_score_2 = get_player_numeric_input("canastas 2")
+
+        player_score_3 = get_player_numeric_input("canastas 3")
+
+        create_nuevo_jugador(
+            player_name,
+            int(player_number),
+            int(player_score_1),
+            int(player_score_2),
+            int(player_score_3)
+        )
+        print(get_lista_jugadores())
+
+    elif user_selection == "2":
+        get_lista_jugadores()
+
+    elif user_selection == "3":
+        get_maximo_anotador()
+
+    elif user_selection == "4":
+        get_estadisticas_equipo()
+
+    elif user_selection == "0":
+        print("Gracias!!\n")
+    else:
+        print("Seleccionaste una opción que no existe. Intenta de nuevo\n")
+        initialize_game()
+    return user_selection
+
+
+initialize_game()
