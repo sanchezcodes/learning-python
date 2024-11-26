@@ -4,6 +4,7 @@ title: 04GIAR Fundamentos de la programación.
 subtitle: ACTIVIDAD 1: INTRODUCCIÓN A PYTHON
 author: 2024@ Luis Alberto Sánchez Guzmán
 
+
 Definición del jugador
 - Función Introducir un nuevo jugador
 -- debe validar que el dorsal no está repetido
