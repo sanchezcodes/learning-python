@@ -73,6 +73,10 @@ def get_jugadores(estadistica_or_lista):
     :return: cadena de texto con los valores de la lista seleccionada
     """
     result = ""
+    canastas_1 = 0
+    canastas_2 = 0
+    canastas_3 = 0
+    total = 0
     # Si no hay jugadores en la lista le pide que cree uno
     if len(players) == 0:
         result = "\nNo hay jugadores, crea un jugador con la opción[1]\n"
@@ -82,12 +86,15 @@ def get_jugadores(estadistica_or_lista):
                        f'Dorsal: {player[1]} | '
                        f'Total anotaciones: {player[-1]}.\n')
         else:
-            result += (f'Jugador {index + 1}: Nombre {player[0]} | '
-                       f'Dorsal: {player[1]} | '
-                       f'Canasta 1: {player[2]} | '
-                       f'Canasta 2: {player[3]} | '
-                       f'Canasta 3: {player[4]} | '
-                       f'Total anotaciones: {player[-1]}.\n')
+            canastas_1 += player[2]
+            canastas_2 += player[3]
+            canastas_3 += player[4]
+            total += player[5]
+
+            result = (f'Totales Equipo: Canasta 1: {canastas_1} | '
+                       f'Canasta 2: {canastas_2} | '
+                       f'Canasta 3: {canastas_3} | '
+                       f'Total anotaciones: {total}.\n')
     return result
 
 
