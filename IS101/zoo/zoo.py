@@ -1,7 +1,5 @@
 age = 0
 group_people = []
-precio_total = 0
-numero_entradas = 0
 
 
 catalogo_entradas = {
@@ -37,13 +35,19 @@ def get_ticket_type(edad: int) -> tuple:
 
 def get_group_details():
     result = ""
+    precio_total = 0
+    numero_entradas = 0
+
     for tipo, valor in group_people:
         precio_total = precio_total + valor
         factura[tipo] += 1
 
     for clave in factura:
-        print(f" {factura[clave]:2d} entradas {clave.lower()}:{factura[clave] * catalogo_entradas[clave]['precio']} €")
+        print(f" {factura[clave]:2d} entradas {clave.lower()}: {factura[clave] * catalogo_entradas[clave]['precio']:6.2f} €")
 
+    numero_entradas = len(group_people)
+    print(f" Número de entradas: {numero_entradas:03d} €")
+    print(f" Precio total......: {precio_total:.2f}")
     return result
 
 
@@ -55,9 +59,6 @@ while True:
         tipo = get_ticket_type(int(age))
         group_people.append(tipo)
 
-group_details = get_group_details()
+get_group_details()
 
-numero_entradas = len(group_people)
 
-print(f" Precio total: {precio_total:.2f}")
-print(f" Número de entradas: {numero_entradas:03d} €")
