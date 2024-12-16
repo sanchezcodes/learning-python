@@ -9,9 +9,31 @@ numeros_romanos = {
 }
 
 
-def a_romanos(valor: int) -> str:
-    result = ""
-    for clave, value in numeros_romanos.items():
-        if value == valor:
-            result = clave
-    return result
+def traducir(valor: int) -> str:
+
+    pass
+
+
+def a_romanos(numero: int) -> str:
+    lista_traducciones = []
+
+    numero_str = str(numero)
+    reves = numero_str[::-1]
+    for posicion, cifra in enumerate(reves):
+        valor = descomponer(posicion, cifra)
+        # valor = lambda p, c: int(c) * 10 ** p
+        valor_traducio = traducir(valor)
+        lista_traducciones.append(valor_traducio)
+
+    lista_traducciones_inversa = lista_traducciones.reverse()
+    num_romano = ""
+    for simbolo in lista_traducciones_inversa:
+        num_romano += simbolo
+    return num_romano
+
+
+def descomponer(position: int, valor: str) -> str:
+    return int(valor) * (10 ** position)
+
+
+print(descomponer(0, "9"))
